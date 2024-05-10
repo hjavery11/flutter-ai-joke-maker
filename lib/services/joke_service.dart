@@ -1,15 +1,15 @@
 import 'package:dart_openai/dart_openai.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class JokeService {
-  final String apiKey =
-      'sk-proj-4x8WAxdshQIBQ3DIcvHTT3BlbkFJkgDp2c79lyBFcM6tyGjS';
+  final String? apiKey = dotenv.env['OPEN_AI_API_KEY'];
 
   Future<String> getJoke(String topic, String type) async {
     if (type == 'Surprise me') {
       type = 'random';
     }
 
-    OpenAI.apiKey = apiKey; // Set API key
+    OpenAI.apiKey = apiKey!; // Set API key
 
     OpenAIChatCompletionChoiceMessageModel systemMessage;
     OpenAIChatCompletionChoiceMessageModel userMessage;
